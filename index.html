@@ -68,8 +68,21 @@
 </head>
 
 <body>
+ <div class="container">
 
-    <main class="container">
+        <h1>Facebook Reel</h1>
+
+        <iframe
+            class="facebook-video"
+            src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F123456789012345%2F&show_text=false"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+    
+    <main class="container1">
 
         <h1>My Video</h1>
 
@@ -91,7 +104,17 @@
         </div>
 
     </main>
+<script>
+    const reelURL =
+        "https://www.facebook.com/reel/1628002045545331/";
 
+    const embedURL =
+        "https://www.facebook.com/plugins/video.php?href="
+        + encodeURIComponent(reelURL)
+        + "&show_text=false";
+
+    document.getElementById("facebookPlayer").src = embedURL;
+</script>
 
     <script>
 
