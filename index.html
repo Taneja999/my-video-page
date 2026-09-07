@@ -1,0 +1,190 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Video Player</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        video {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            background: #000;
+        }
+
+        .status {
+            margin-top: 12px;
+            padding: 10px 12px;
+            background: #1d1d1d;
+            border-radius: 5px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .error {
+            color: #ff7777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <h1>My Video</h1>
+
+        <div class="video-wrapper">
+
+            <video
+                id="videoPlayer"
+                controls
+                preload="metadata"
+                playsinline
+            >
+                Your browser does not support the HTML5 video player.
+            </video>
+
+        </div>
+
+        <div id="status" class="status">
+            Loading video...
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /*
+         * ==========================================================
+         * FIXED VIDEO PATH
+         * ==========================================================
+         *
+         * Replace the URL below with your actual video URL.
+         *
+         * Example:
+         *
+         * const VIDEO_PATH =
+         *     "https://example.com/videos/my-video.mp4";
+         *
+         */
+
+        const VIDEO_PATH = "https://YOUR-VIDEO-SERVER.com/path/to/video.mp4";
+
+
+        const videoPlayer = document.getElementById("videoPlayer");
+        const status = document.getElementById("status");
+
+
+        /*
+         * Set the video source
+         */
+
+        videoPlayer.src = VIDEO_PATH;
+
+
+        /*
+         * Video loaded successfully
+         */
+
+        videoPlayer.addEventListener("loadedmetadata", function () {
+
+            status.textContent = "Video ready.";
+
+        });
+
+
+        /*
+         * Video starts playing
+         */
+
+        videoPlayer.addEventListener("play", function () {
+
+            status.textContent = "Playing...";
+
+        });
+
+
+        /*
+         * Video paused
+         */
+
+        videoPlayer.addEventListener("pause", function () {
+
+            if (!videoPlayer.ended) {
+                status.textContent = "Paused.";
+            }
+
+        });
+
+
+        /*
+         * Video ended
+         */
+
+        videoPlayer.addEventListener("ended", function () {
+
+            status.textContent = "Video ended.";
+
+        });
+
+
+        /*
+         * Error while loading/playing video
+         */
+
+        videoPlayer.addEventListener("error", function () {
+
+            status.textContent =
+                "Unable to load the video. Please check the video path.";
+
+            status.classList.add("error");
+
+        });
+
+    </script>
+
+</body>
+</html>
+```
